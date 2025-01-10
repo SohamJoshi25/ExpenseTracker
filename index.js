@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 
-const userRouter = require('./routers/user.router.js');
+const expenseRouter = require('./routers/expense.router.js');
 const connectDB = require('./services/connectDB.service.js')
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(cors({
   }));
 
 //Routes
-app.use("/api",userRouter);
+app.use("/api",expenseRouter);
   
 
 app.set('views', './public/views')
