@@ -23,8 +23,12 @@ app.use(cors({
 app.use("/api",expenseRouter);
   
 
-app.set('views', './public/views')
+app.set('views', './public')
 app.set('view engine','ejs')
+
+app.get("/",()=>{
+  message:"Hello From backend"
+})
 
 //Database Connection
 connectDB();
