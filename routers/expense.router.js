@@ -3,13 +3,21 @@ const {createExpense,updateExpense,deleteExpense,getExpense} = require('../contr
 
 const router = express.Router();
 
-router.get("/expense",getExpense );
+router.get("/",getExpense );
 
-router.post("/expense",createExpense );
+router.post("/",createExpense );
 
-router.patch("/expense",updateExpense );
+router.patch("/",updateExpense );
 
-router.delete("/expense",deleteExpense );
+router.delete("/",deleteExpense );
+
+router.get("/create",(request,response)=>{
+    response.render("./views/create.ejs")
+})
+
+router.get("/update/:id",(request,response)=>{
+    response.render("./views/update.ejs",{_id:request.params.id})
+})
 
 
 module.exports = router;

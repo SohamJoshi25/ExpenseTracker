@@ -16,7 +16,9 @@ const createExpense = async (request,response) => {
 
         await expense.save();
 
-        return response.status(200).json({message:"success",expense:expense})
+        console.log(expense);
+
+        return response.redirect('/');
 
     } catch (error) {
         console.log(error);
@@ -36,9 +38,9 @@ const getExpense = async (request,response) => {
                 debit += expense.amount;
             }
         })
-        return response.status(200).json({message:"success",expenses:expenses,credit:credit,debit:debit})
+        return response.render("./views/home.ejs",{message:"success",expenses:expenses,credit:credit,debit:debit})
     } catch (error) {
-        console.log(error);n
+        console.log(error);
         response.status(500).json({message:"error"})
     }
 }
@@ -65,7 +67,7 @@ const updateExpense = async (request,response) => {
             return response.status(404).json({message:"Expense Not Found"})
         }
 
-        return response.status(200).json({message:"success",updatedExpense:updatedExpense})
+        return response.status(200).json({mesage:"success"});
 
     } catch (error) {
         console.log(error);
@@ -76,22 +78,19 @@ const updateExpense = async (request,response) => {
 const deleteExpense = async (request,response) => {
     try {
         const expenseId = request.body._id;
+        console.log(request.body)
 
         if(!expenseId){
-            response.status(500).json({message:"Missing parameters"})
+            return response.status(500).json({message:"Missing parameters"})
         }
 
         const deletedExpense = await expenseModel.findByIdAndDelete(expenseId);
 
-        if(!deletedExpense){
-            return response.status(400).json({message:"Expense Not Found"})
-        }
-
-        return response.status(200).json({message:"success",deletedExpense:deletedExpense})
+        return response.status(200).json({mesage:"success"});
 
     } catch (error) {
         console.log(error);
-        response.status(500).json({message:"error"})
+        return response.status(500).json({message:"error"})
     }
 }
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Form</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" >
+        <br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" >
+        <br>
+
+        <label for="label">Label:</label>
+        <input type="text" id="label" name="label" >
+        <br>
+
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" >
+        <br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" >
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
+
+            try {
+                const id = <%- JSON.stringify(_id) %>; // Ensure _id is passed from the server
+                const formData = new FormData(event.target);
+                const data = { _id: id };
+
+                // Only include filled fields
+                for (const [key, value] of formData.entries()) {
+                    if (value.trim() !== "") { // Check if the field is not empty
+                        data[key] = value;
+                    }
+                }
+                // Send data using fetch
+                const response = await fetch("/", {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    window.location.href = "/";
+                } else {
+                    throw new Error("Failed to submit data.");
+                }
+            } catch (e) {
+                alert(`Error: ${e.message}`);
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+</html>

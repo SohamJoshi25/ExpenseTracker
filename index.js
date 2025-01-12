@@ -5,11 +5,14 @@ const express = require("express");
 const cors = require("cors");
 
 const expenseRouter = require('./routers/expense.router.js');
+const pageRouter = require('./routers/page.router.js');
+
 const connectDB = require('./services/connectDB.service.js')
 
 const app = express();
 
 //Middlewares
+app.use(express.urlencoded({ extended: true })); 
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors({
@@ -19,16 +22,14 @@ app.use(cors({
     allowedHeaders: '*'
   }));
 
-//Routes
-app.use("/api",expenseRouter);
   
-
 app.set('views', './public')
 app.set('view engine','ejs')
+app.engine('html', require('ejs').renderFile);
 
-app.get("/",()=>{
-  message:"Hello From backend"
-})
+//Routes
+app.use("/",expenseRouter);
+
 
 //Database Connection
 connectDB();
