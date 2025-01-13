@@ -3,117 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="/styles/home.css">
     <title>Expense Tracker</title>
 </head>
 <body>
-    <div class="navbar">
-        <img src="" alt="">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/assets/logo.png" alt="Expense Tracker Logo">
+        </div>
         <h1>Expense Tracker</h1>
-    </div>
-    <div class="body">
-        <div class="statistics">
-            <h2>Statistics</h2>
-            <div class="info">
-                <div class="credit">
-                    <img src="" alt="">
-                    <div>
-                        <h3 class="info-title">Income</h3>
-                        <h3 class="money"> 
-                            <% if(locals.credit){ %>
-                                <%= credit %>
-                            <% } else { %>
-                                0
-                            <% } %>
-                        Rs</h3>
-                    </div>
+    </nav>
+
+    <main>
+        <section class="statistics">
+            <h2>Overview</h2>
+            <div class="info-container">
+                <div class="info-card income-card">
+                    <h3>Income</h3>
+                    <p class="money">Rs. <%= locals.credit || 0 %></p>
                 </div>
-                <div class="debit">
-                    <img src="" alt="">
-                    <div>
-                        <h3 class="info-title">Expense</h3>
-                        <h3 class="money"> 
-                            <% if(locals.debit){ %>
-                                <%= debit %>
-                            <% } else { %>
-                                0
-                            <% } %>
-                        Rs</h3>
-                    </div>
+                <div class="info-card expense-card">
+                    <h3>Expense</h3>
+                    <p class="money">Rs. <%= locals.debit || 0 %></p>
                 </div>
             </div>
-        </div>
-        <div class="functionBar">
-            <h3>All Expenses</h3>
-            <a href="/create">Add A Expense</a>
-        </div>
-        <div class="transaction">
-            <table>
-                <tr>
-                    <th>Transaction</th>
-                    <th>Username</th>
-                    <th>Label</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-                <% locals.expenses && expenses.forEach((expense) => { %>
-                    <tr data-expense-id="<%= expense._id %>">
-                        <td><%= expense.name %></td>
-                        <td><%= expense.username %></td>
-                        <td><%= expense.label %></td>
-                        <td><%= expense.type %></td>
-                        <td><%= expense.amount %> Rs</td>
-                        <td>
-                            <button onclick="deleteExpense( <%= JSON.stringify(expense) %> )" >Delete</button>
-                        </td>
-                        <td>
-                            <button onclick="updateExpense( <%= JSON.stringify(expense) %> )" >Update</button>
-                        </td>
+        </section>
+
+        <section class="transactions">
+            <div class="header">
+                <h2>All Transactions</h2>
+                <a class="btn add-expense" href="/create">+ Add Expense</a>
+            </div>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Username</th>
+                        <th>Label</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
                     </tr>
-                <% }) %>
+                </thead>
+                <tbody>
+                    <% (locals.expenses || []).forEach((expense) => { %>
+                        <tr>
+                            <td><%= expense.name %></td>
+                            <td><%= expense.username %></td>
+                            <td><%= expense.label %></td>
+                            <td><%= expense.type %></td>
+                            <td>Rs. <%= expense.amount %></td>
+                            <td>
+                                <button class="btn btn-delete" onclick="deleteExpense('<%= expense._id %>')">Delete</button>
+                                <button class="btn btn-update" onclick="updateExpense('<%= expense._id %>')">Update</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
             </table>
-        </div>
-        <% if (locals.message) { %>
-            <h1><%= message %></h1>    
-        <% } %>
-    </div>
+        </section>
+    </main>
 
-    <script>
-
-        const deleteExpense = async (expense) => {
-
-            try {
-                const response = await fetch("/", {
-                    method: "DELETE",  // Use DELETE method
-                    headers: {
-                        "Content-Type": "application/json",  // Set the content type to JSON
-                    },
-                    body: JSON.stringify({
-                        _id: expense._id,  // Pass the expense ID to the server
-                    })
-                });
-           
-                window.location.reload();
-                
-            } catch (error) {
-                window.alert("An error occurred while deleting the expense.");
-                console.error(error);
-            }
-        }
-
-        const updateExpense = async (expense) => {
-
-            try {
-
-                window.location.href = "/update/"+expense._id;
-                
-            } catch (error) {
-                window.alert("An error occurred while deleting the expense.");
-                console.error(error);
-            }
-        }
-
-    </script>
+    <script src="/scripts/home.js"></script>
 </body>
 </html>

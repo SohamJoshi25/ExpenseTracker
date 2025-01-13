@@ -5,7 +5,6 @@ const express = require("express");
 const cors = require("cors");
 
 const expenseRouter = require('./routers/expense.router.js');
-const pageRouter = require('./routers/page.router.js');
 
 const connectDB = require('./services/connectDB.service.js')
 

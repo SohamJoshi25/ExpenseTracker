@@ -3,67 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Form</title>
+    <link rel="stylesheet" href="/styles/update.css">
+    <title>Update Expense</title>
 </head>
 <body>
-    <form onsubmit="handleSubmit(event)">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" >
-        <br>
+    <div class="form-container">
+        <h1>Update Expense</h1>
+        <form onsubmit="handleSubmit(event,)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Expense name">
+            </div>
+            <div class="form-group">
+                <label for="label">Label</label>
+                <input type="text" id="label" name="label" placeholder="Expense label">
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" id="type" name="type" placeholder="Income/Expense">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Expense amount">
+            </div>
+            <button type="submit" class="btn btn-submit">Update Expense</button>
+        </form>
+    </div>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" >
-        <br>
-
-        <label for="label">Label:</label>
-        <input type="text" id="label" name="label" >
-        <br>
-
-        <label for="type">Type:</label>
-        <input type="text" id="type" name="type" >
-        <br>
-
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" >
-        <br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <script>
-        async function handleSubmit(event) {
-            event.preventDefault(); // Prevent form from submitting the default way
-
-            try {
-                const id = <%- JSON.stringify(_id) %>; // Ensure _id is passed from the server
-                const formData = new FormData(event.target);
-                const data = { _id: id };
-
-                // Only include filled fields
-                for (const [key, value] of formData.entries()) {
-                    if (value.trim() !== "") { // Check if the field is not empty
-                        data[key] = value;
-                    }
-                }
-                // Send data using fetch
-                const response = await fetch("/", {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                if (response.ok) {
-                    window.location.href = "/";
-                } else {
-                    throw new Error("Failed to submit data.");
-                }
-            } catch (e) {
-                alert(`Error: ${e.message}`);
-                console.error(e);
-            }
-        }
-    </script>
+    <script src="/scripts/update.js"></script>
 </body>
 </html>
