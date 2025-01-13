@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/update.css">
-    <title>Update Expense</title>
+    <title>Add Expense</title>
 </head>
 <body>
     <div class="form-container">
-        <h1>Update Expense</h1>
+        <h1>Add Expense</h1>
         <form onsubmit="handleSubmit(event,)">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -24,13 +24,13 @@
             </div>
             <div class="form-group">
                 <label for="type">Type</label>
-                <input type="text" id="type" name="type" placeholder="Income/Expense">
+                <input type="text" id="type" name="type" placeholder="Credit/Debit">
             </div>
             <div class="form-group">
                 <label for="amount">Amount</label>
                 <input type="number" id="amount" name="amount" placeholder="Expense amount">
             </div>
-            <button type="submit" class="btn btn-submit">Update Expense</button>
+            <button type="submit" class="btn btn-submit">Add Expense</button>
         </form>
     </div>
 
