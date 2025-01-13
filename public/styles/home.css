@@ -5,12 +5,21 @@ body {
     padding: 0;
 }
 
+.gradient-text {
+    font-size: 2rem;
+    /* Adjust as needed */
+    font-weight: bold;
+    background: linear-gradient(90deg, #292556, #E3A600);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .navbar {
-    background-color: #4caab1;
-    color: white;
     display: flex;
     align-items: center;
     padding: 10px 20px;
+    background: linear-gradient(90deg, rgba(14, 131, 198, 0.4), rgba(14, 131, 198, 0.4));
+
 }
 
 .navbar img {
@@ -19,7 +28,7 @@ body {
 }
 
 .statistics {
-    background-color: white;
+    background-color: rgba(14, 131, 198, 0.16);
     padding: 20px;
     margin: 20px;
     border-radius: 8px;
@@ -28,22 +37,80 @@ body {
 
 .info-container {
     display: flex;
+    gap: 20px;
     justify-content: space-between;
 }
 
 .info-card {
+    background-color: #FFFFFF; 
+    border-radius: 10px;
     padding: 20px;
-    width: 45%;
-    border-radius: 8px;
-    color: white;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.info-card:hover {
+    transform: translateY(-5px); 
+}
+
+.info-card .content {
+    flex-grow: 1;
+  }
+  
+  .info-card .content p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .info-card .content h3 {
+    margin: 5px 0 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000;
+  }
+
+.income-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 
 .income-card {
-    background-color: #338333;
+    background-color: #ffffff;
+    display: flex;
+    color: black;
+    justify-content: space-around;
 }
 
 .expense-card {
-    background-color: #9e5944;
+    background-color: #ffffff;
+    display: flex;
+    color: black;
+    justify-content: space-around;
+}
+
+.expense-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.saving-card {
+    background-color: #ffffff;
+    display: flex;
+    color: black;
+    justify-content: space-around;
+}
+
+.saving-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 
 .transactions-table {
@@ -72,16 +139,16 @@ body {
 }
 
 .btn-update {
-    background-color: #2196F3;
+    background-color: #089637;
 }
 
 .add-expense {
-    color:black;
+    color: black;
     text-decoration: none;
     background-color: #e0e6ec;
 }
 
-.add-expense:hover{
+.add-expense:hover {
     background-color: #cdd3da;
 }
 

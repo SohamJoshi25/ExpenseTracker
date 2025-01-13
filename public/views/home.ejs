@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/home.css">
     <title>Budget Buddy</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="/assets/logo.png" alt="Expense Tracker Logo">
+            <img src="/assets/logo3.png" alt="Expense Tracker Logo">
         </div>
-        <h1>Budget Buddy</h1>
+        <h1 class="gradient-text">Budget Buddy</h1>
     </nav>
 
     <main>
         <section class="statistics">
-            <h2>Overview</h2>
+            <h2>Statistics</h2>
             <div class="info-container">
                 <div class="info-card income-card">
-                    <h3>Income</h3>
-                    <p class="money">Rs. <%= locals.credit || 0 %></p>
+                    <img src="/assets/income.png" alt="income-card">
+                    <div class="content">
+                        <h3>Income</h3>
+                        <p class="money">Rs. <%= locals.credit || 0 %>
+                        </p>
+                    </div>
                 </div>
                 <div class="info-card expense-card">
-                    <h3>Expense</h3>
-                    <p class="money">Rs. <%= locals.debit || 0 %></p>
+                    <img src="/assets/expense.png" alt="expense-card">
+                    <div class="content">
+                        <h3>Expense</h3>
+                        <p class="money">Rs. <%= locals.debit || 0 %>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card saving-card">
+                    <img src="/assets/saving.png" alt="saving-card">
+                    <div class="content">
+                        <h3>Saving</h3>
+                    </div>
                 </div>
             </div>
         </section>
@@ -46,19 +63,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% (locals.expenses || []).forEach((expense) => { %>
+                    <% (locals.expenses || []).forEach((expense)=> { %>
                         <tr>
-                            <td><%= expense.name %></td>
-                            <td><%= expense.username %></td>
-                            <td><%= expense.label %></td>
-                            <td><%= expense.type %></td>
-                            <td>Rs. <%= expense.amount %></td>
                             <td>
-                                <button class="btn btn-delete" onclick="deleteExpense('<%= expense._id %>')">Delete</button>
-                                <button class="btn btn-update" onclick="updateExpense('<%= expense._id %>')">Update</button>
+                                <%= expense.name %>
+                            </td>
+                            <td>
+                                <%= expense.username %>
+                            </td>
+                            <td>
+                                <%= expense.label %>
+                            </td>
+                            <td>
+                                <%= expense.type %>
+                            </td>
+                            <td>Rs. <%= expense.amount %>
+                            </td>
+                            <td>
+                                <button class="btn btn-delete"
+                                    onclick="deleteExpense('<%= expense._id %>')">Delete</button>
+                                <button class="btn btn-update"
+                                    onclick="updateExpense('<%= expense._id %>')">Update</button>
                             </td>
                         </tr>
-                    <% }) %>
+                        <% }) %>
                 </tbody>
             </table>
         </section>
@@ -66,4 +94,5 @@
 
     <script src="/scripts/home.js"></script>
 </body>
+
 </html>
