@@ -9,14 +9,12 @@ const createExpense = async (request,response) => {
         const amount =  request.body.amount;
 
         if(!username || !name || !label || !type || !amount){
-            response.status(500).json({message:"Missing parameters"})
+            return response.status(500).json({message:"Missing parameters"})
         }
 
         const expense = new expenseModel({username:username,name:name,label:label,type:type,amount:amount});
 
         await expense.save();
-
-        console.log(expense);
 
         return response.redirect('/');
 
@@ -47,7 +45,7 @@ const getExpense = async (request,response) => {
 
 const updateExpense = async (request,response) => {
     try {
-        const expenseId = request.body._id;
+        const expenseId = request.params.id;
 
         const username =  request.body.username;
         const name =  request.body.name;
@@ -56,7 +54,7 @@ const updateExpense = async (request,response) => {
         const amount =  request.body.amount;
 
         if(!expenseId){
-            response.status(500).json({message:"Missing parameters"})
+            return response.status(500).json({message:"Missing parameters"})
         }
 
         const newExpense = {username,name,label,type,amount};
@@ -67,7 +65,7 @@ const updateExpense = async (request,response) => {
             return response.status(404).json({message:"Expense Not Found"})
         }
 
-        return response.status(200).json({mesage:"success"});
+        return response.redirect('/');
 
     } catch (error) {
         console.log(error);
