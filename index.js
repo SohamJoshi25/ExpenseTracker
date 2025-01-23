@@ -1,38 +1,38 @@
-require('dotenv').config();
+require('dotenv').config()
+const mongoose = require('mongoose')
+const express = require("express")
+const cors = require("cors")
 
-//Import Packages
-const express = require("express");
-const cors = require("cors");
+const myRouter = require('./routers/expense.router.js')
 
-const expenseRouter = require('./routers/expense.router.js');
-
-const connectDB = require('./services/connectDB.service.js')
-
-const app = express();
+const app = express()
 
 //Middlewares
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(express.static('public'))
-app.use(cors({
-    origin: '*',
-    credentials: true,
-    methods: '*',
-    allowedHeaders: '*'
-  }));
+app.use(cors());
 
-  
+//Necessary to render .ejs pages
 app.set('views', './public')
 app.set('view engine','ejs')
-app.engine('html', require('ejs').renderFile);
 
-//Routes
-app.use("/",expenseRouter);
-
+//Mount Router
+app.use("/",myRouter)
 
 //Database Connection
-connectDB();
+app.listen(process.env.PORT,async ()=>{
 
-app.listen(process.env.PORT,()=>{
-    console.log("Server Started on Port : "+process.env.PORT);
+  console.log("Server Started on Port:"+process.env.PORT)
+
+  //Connect to MongoDB
+  try {
+    await mongoose.connect(process.env.MONGOURI)
+    console.log("Connected to MongoDB")
+  } catch (error) {
+    console.log("Connection to MongoDB Failed")
+  }
+  
 })
+
+

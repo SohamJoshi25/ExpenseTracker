@@ -98,16 +98,16 @@
 
         const updateExpense = (expenseId) => {
             window.location.href = `/update/${expenseId}`;
+            //window.location.href = `/update`;
         };
 
         const deleteExpense = async (expenseId) => {
             try {
-                const response = await fetch("/", {
+                const response = await fetch(`/${expenseId}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ _id: expenseId }),
+                    }
                 });
 
                 if (response.ok) {

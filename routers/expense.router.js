@@ -1,16 +1,16 @@
 const express = require("express")
-const {createExpense,updateExpense,deleteExpense,getExpense} = require('../controllers/expense.controller.js');
-const expenseModel = require("../models/expense.model.js");
+const {createExpense,updateExpense,deleteExpense,getExpense} = require('../controllers/expense.controller.js')
+const expenseModel = require("../models/expense.model.js")
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/",getExpense );
+router.get("/",getExpense)
 
-router.post("/",createExpense );
+router.post("/",createExpense)
 
-router.post("/update/:id", updateExpense );
+router.post("/update/:id", updateExpense)
 
-router.delete("/",deleteExpense );
+router.delete("/:id",deleteExpense)
 
 router.get("/create",(request,response)=>{
     response.render("./views/create.ejs")
@@ -25,5 +25,14 @@ router.get("/update/:id",async (request,response)=>{
     }
 })
 
+// Use and explain this in frontend
+//
+// router.get("/update",(request,response)=>{
+//     response.render("./views/update.ejs",{_id:request.params.id,expense:expense})
+// })
+//
+// router.get("/",(request,response)=>{
+//     response.render("./views/home.ejs",{expenses:[{name:"My Expense",username:"User1",label:"Personal",type:"credit",amount:4000}]})
+// })
 
-module.exports = router;
+module.exports = router

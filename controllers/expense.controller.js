@@ -1,5 +1,6 @@
 const expenseModel = require("../models/expense.model.js");
 
+//Create a new Expense and put into database 
 const createExpense = async (request,response) => {
     try {
         const username =  request.body.username;
@@ -12,11 +13,12 @@ const createExpense = async (request,response) => {
             return response.status(500).json({message:"Missing parameters"})
         }
 
-        const expense = new expenseModel({username:username,name:name,label:label,type:type,amount:amount});
+        const expense = new expenseModel({username:username,name:name,label:label,type:type,amount:amount}) //Create a new Expense Model Object from new Values
 
-        await expense.save();
+        await expense.save(); //Save the newly created Object to remote Database
 
         return response.redirect('/');
+        //return response.send(200).json({expense:expense})
 
     } catch (error) {
         console.log(error);
@@ -24,25 +26,35 @@ const createExpense = async (request,response) => {
     }
 }
 
+//Get all expense records present in database
 const getExpense = async (request,response) => {
     try {
         const expenses = await expenseModel.find();
+
         let credit = 0;
         let debit = 0;
-        expenses.forEach((expense)=>{
+
+        for(let i = 0; i<expenses.length;i++){
+
+            const expense = expenses[i];
+
             if(expense.type.toLowerCase()=="credit"){
                 credit += expense.amount;
-            }else{
+            }else{//Debit
                 debit += expense.amount;
             }
-        })
+        }
+
         return response.render("./views/home.ejs",{message:"success",expenses:expenses,credit:credit,debit:debit})
+        //return response.send(200).json({expenses:expenses})
+
     } catch (error) {
         console.log(error);
         response.status(500).json({message:"error"})
     }
 }
 
+//Update a Expense Record in database
 const updateExpense = async (request,response) => {
     try {
         const expenseId = request.params.id;
@@ -61,11 +73,8 @@ const updateExpense = async (request,response) => {
 
         const updatedExpense = await expenseModel.findByIdAndUpdate(expenseId,newExpense,{new:true})
 
-        if(!updatedExpense){
-            return response.status(404).json({message:"Expense Not Found"})
-        }
-
         return response.redirect('/');
+        //return response.send(200).json({updatedExpense:updatedExpense})
 
     } catch (error) {
         console.log(error);
@@ -73,10 +82,10 @@ const updateExpense = async (request,response) => {
     }
 }
 
+//Delete a Expense from Database
 const deleteExpense = async (request,response) => {
     try {
-        const expenseId = request.body._id;
-        console.log(request.body)
+        const expenseId = request.params.id;
 
         if(!expenseId){
             return response.status(500).json({message:"Missing parameters"})
@@ -84,14 +93,12 @@ const deleteExpense = async (request,response) => {
 
         const deletedExpense = await expenseModel.findByIdAndDelete(expenseId);
 
-        return response.status(200).json({mesage:"success"});
+        return response.status(200).json({mesage:"success",deletedExpense:deletedExpense});
 
     } catch (error) {
         console.log(error);
         return response.status(500).json({message:"error"})
     }
 }
-
-
 
 module.exports = {createExpense,updateExpense,deleteExpense,getExpense}
