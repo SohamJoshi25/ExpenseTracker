@@ -64,3 +64,9 @@ input::placeholder {
 .btn-submit:hover {
     background-color: #639fb9;
 }
+
+
+.back{
+    display: block;
+    padding-top: 10px;
+}
