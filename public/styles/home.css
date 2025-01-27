@@ -124,6 +124,7 @@ body {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
+    min-width: 100px;
 }
 
 .btn {
@@ -199,5 +200,5 @@ h4 {
     width:fit-content;
     display: flex;
     justify-content: space-between;
-    gap:10px
+    gap:10px;
 }
