@@ -20,6 +20,14 @@ const expenseSchema = new mongoose.Schema({
     amount:{
         type:Number,
         required:true
+    },
+    date:{
+        type:String,
+        default:  () => new Date().toDateString()
+    },
+    time:{
+        type:String,
+        default:  () => new Date().toTimeString().split(" ")[0]
     }
 });
 

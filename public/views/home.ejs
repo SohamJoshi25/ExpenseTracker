@@ -64,6 +64,8 @@
                         <th>Label</th>
                         <th>Type</th>
                         <th>Amount</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th class="action-head">Actions</th>
                     </tr>
                 </thead>
@@ -82,7 +84,14 @@
                             <td>
                                 <%= expense.type %>
                             </td>
-                            <td>Rs. <%= expense.amount %>
+                            <td>
+                                Rs. <%= expense.amount %>
+                            </td>
+                            <td>
+                                <%= expense.date %>
+                            </td>
+                            <td>
+                                <%= expense.time %>
                             </td>
                             <td class="actions">
                                 <button class="btn btn-update"

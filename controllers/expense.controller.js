@@ -64,12 +64,14 @@ const updateExpense = async (request,response) => {
         const label =  request.body.label;
         const type =  request.body.type;
         const amount =  request.body.amount;
+        const date =  new Date().toDateString()
+        const time =  new Date().toTimeString().split(" ")[0]
 
         if(!expenseId){
             return response.status(500).json({message:"Missing parameters"})
         }
 
-        const newExpense = {username,name,label,type,amount};
+        const newExpense = {username,name,label,type,amount,date,time};
 
         const updatedExpense = await expenseModel.findByIdAndUpdate(expenseId,newExpense,{new:true})
 
