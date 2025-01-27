@@ -38,7 +38,7 @@ body {
 .info-container {
     display: flex;
     gap: 20px;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .info-card {
@@ -48,7 +48,7 @@ body {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 35px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
@@ -67,7 +67,7 @@ body {
     color: #333;
   }
   
-  .info-card .content h3 {
+  .info-card .content{
     margin: 5px 0 0;
     font-size: 1.75rem;
     font-weight: bold;
@@ -139,6 +139,14 @@ body {
 }
 
 .btn-update {
+    background-color: #25bd57;
+}
+
+.btn-delete:hover {
+    background-color: #d82f23;
+}
+
+.btn-update:hover {
     background-color: #089637;
 }
 
@@ -154,4 +162,42 @@ body {
 
 .transactions {
     margin: 5% 40px;
+}
+
+.rs {
+    font-weight: 700;
+    color:grey;
+    font-size: medium;
+}
+
+h4 {
+    margin: 0px;
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+.money{
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.header{
+    display: flex; 
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header>a {
+    margin: 16px 0px;
+}
+
+.action-head {
+    width:0px;
+}
+
+.actions{
+    width:fit-content;
+    display: flex;
+    justify-content: space-between;
+    gap:10px
 }

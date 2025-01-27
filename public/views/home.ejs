@@ -23,26 +23,29 @@
                 <div class="info-card income-card">
                     <img src="/assets/income.png" alt="income-card">
                     <div class="content">
-                        <h3>Income</h3>
-                        <p class="money">Rs. <%= locals.credit || 0 %>
-                        </p>
+                        <h4>Income</h4>
+                        <span class="rs">Rs.</span>
+                        <div class="money"><%= locals.credit || 0 %>
+                        </div>
                     </div>
                 </div>
                 <div class="info-card expense-card">
                     <img src="/assets/expense.png" alt="expense-card">
                     <div class="content">
-                        <h3>Expense</h3>
-                        <p class="money">Rs. <%= locals.debit || 0 %>
-                        </p>
+                        <h4>Expense</h4>
+                        <span class="rs">Rs.</span>
+                        <div class="money"><%= locals.debit || 0 %>
+                        </div>
                     </div>
                 </div>
 
                 <div class="info-card saving-card">
                     <img src="/assets/saving.png" alt="saving-card">
                     <div class="content">
-                        <h3>Saving</h3>
-                        <p class="money">Rs. <%= (locals.credit - locals.debit) %>
-                        </p>
+                        <h4>Saving</h4>
+                        <span class="rs">Rs.</span>
+                        <div class="money"><%= (locals.credit - locals.debit) %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,7 +53,7 @@
 
         <section class="transactions">
             <div class="header">
-                <h2>All Transactions</h2>
+                <h2>All Expenses</h2>
                 <a class="btn add-expense" href="/create">+ Add Expense</a>
             </div>
             <table class="transactions-table">
@@ -61,7 +64,7 @@
                         <th>Label</th>
                         <th>Type</th>
                         <th>Amount</th>
-                        <th>Actions</th>
+                        <th class="action-head">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,11 +84,11 @@
                             </td>
                             <td>Rs. <%= expense.amount %>
                             </td>
-                            <td>
-                                <button class="btn btn-delete"
-                                    onclick="deleteExpense('<%= expense._id %>')">Delete</button>
+                            <td class="actions">
                                 <button class="btn btn-update"
                                     onclick="updateExpense('<%= expense._id %>')">Update</button>
+                                <button class="btn btn-delete"
+                                onclick="deleteExpense('<%= expense._id %>')">Delete</button>
                             </td>
                         </tr>
                         <% }) %>
