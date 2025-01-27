@@ -31,16 +31,28 @@ label {
     margin-bottom: 5px;
 }
 
-input , select {
+select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
+input {
+    width: 400px;
+    padding:8px 0px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+input::placeholder {
+    padding-left:10px;
+}
+
 .btn-submit {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #88CCE8;
     color: white;
     padding: 10px;
     border: none;
@@ -50,5 +62,5 @@ input , select {
 }
 
 .btn-submit:hover {
-    background-color: #45a049;
+    background-color: #639fb9;
 }
