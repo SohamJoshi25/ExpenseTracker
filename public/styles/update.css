@@ -52,7 +52,7 @@ input::placeholder {
 
 .btn-submit {
     width: 100%;
-    background-color: #88CCE8;
+    background-color: hsl(194, 67%, 44%);
     color: white;
     padding: 10px;
     border: none;
@@ -62,9 +62,8 @@ input::placeholder {
 }
 
 .btn-submit:hover {
-    background-color: #639fb9;
+    background-color: hsl(197, 90%, 31%);
 }
-
 
 .back{
     display: block;
