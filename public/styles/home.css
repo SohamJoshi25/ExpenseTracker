@@ -29,10 +29,15 @@ body {
 
 .statistics {
     background-color: rgba(14, 131, 198, 0.16);
+    font-size: large;
     padding: 20px;
-    margin: 20px;
+    margin: 10px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.statistics h2 {
+    padding: 0px;
+    margin: 5px;
 }
 
 .info-container {
