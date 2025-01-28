@@ -45,7 +45,7 @@ const getExpense = async (request,response) => {
             }
         }
 
-        return response.render("./views/home.ejs",{message:"success",expenses:expenses,credit:credit,debit:debit})
+        return response.render("home.ejs",{message:"success",expenses:expenses,credit:credit,debit:debit})
         //return response.send(200).json({expenses:expenses})
 
     } catch (error) {

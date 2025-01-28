@@ -13,15 +13,15 @@ router.post("/update/:id", updateExpense)
 router.delete("/:id",deleteExpense)
 
 router.get("/create",(request,response)=>{
-    response.render("./views/create.ejs")
+    response.render("create.ejs")
 })
 
 router.get("/update/:id",async (request,response)=>{
     try{
         const expense = await expenseModel.findById(request.params.id);
-        response.render("./views/update.ejs",{_id:request.params.id,expense:expense})
+        response.render("update.ejs",{_id:request.params.id,expense:expense})
     }catch(e){
-        response.render("./views/update.ejs",{_id:request.params.id})
+        response.render("update.ejs",{_id:request.params.id})
     }
 })
 

@@ -8,13 +8,13 @@ const myRouter = require('./routers/expense.router.js')
 const app = express()
 
 //Middlewares
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors());
 
 //Necessary to render .ejs pages
-app.set('views', './public')
+app.set('views', './public/views')
 app.set('view engine','ejs')
 
 //Mount Router
