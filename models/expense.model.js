@@ -20,16 +20,8 @@ const expenseSchema = new mongoose.Schema({
     amount:{
         type:Number,
         required:true
-    },
-    date:{
-        type:String,
-        default:  () => new Date().toLocaleDateString()
-    },
-    time:{
-        type:String,
-        default:  () => new Date().toLocaleTimeString().split(" ")[0]
     }
-});
+},{timestamps:true});
 
 const expenseModel = mongoose.model("expense",expenseSchema);
 module.exports = expenseModel;

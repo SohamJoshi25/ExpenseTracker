@@ -88,10 +88,10 @@
                                 Rs. <%= expense.amount %>
                             </td>
                             <td>
-                                <%= expense.date %>
+                                <%= new Date(expense.updatedAt).toLocaleDateString('en-GB') %>
                             </td>
                             <td>
-                                <%= expense.time %>
+                                <%= new Date(expense.updatedAt).toLocaleTimeString('en-GB') %>
                             </td>
                             <td class="actions">
                                 <button class="btn btn-update"
