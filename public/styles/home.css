@@ -126,6 +126,7 @@ body {
     text-align: center;
     border: 1px solid #ddd;
     min-width: 100px;
+    max-width: 140px;
 }
 
 .btn {
@@ -163,7 +164,7 @@ body {
 }
 
 .transactions {
-    margin: 5% 40px;
+    margin: 0px 30px;
 }
 
 .rs {
@@ -202,4 +203,9 @@ h4 {
     display: flex;
     justify-content: space-between;
     gap:10px;
+}
+
+.wordwrap {
+    word-break: break-all;
+    text-overflow: clip;
 }
