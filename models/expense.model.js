@@ -23,11 +23,11 @@ const expenseSchema = new mongoose.Schema({
     },
     date:{
         type:String,
-        default:  () => new Date().toDateString()
+        default:  () => new Date().toLocaleDateString()
     },
     time:{
         type:String,
-        default:  () => new Date().toTimeString().split(" ")[0]
+        default:  () => new Date().toLocaleTimeString().split(" ")[0]
     }
 });
 
